@@ -15,20 +15,20 @@ Acme::Morihiro - text changer.
     #   エネルギィ源。
 
     my $strings = 'sample text';
-    Acme::Morihiro::all_become_f($strings);
-    print $strings;
-    #outputs =>
-    #   F
+    Acme::Morihiro::changef($strings);
+    # $strings => 'F'
     
     my @array = ('sample', 'text');
-    Acme::Morihiro::all_become_f(@array);
-    print "@array\n";
-    #outputs =>
-    #   F F
+    Acme::Morihiro::changef(@array);
+    # @array => ('F', 'F')
+
+    my %hash= ('key1' => 'val1', 'key2' => 'val2');
+    Acme::Morihiro::changef(%hash);
+    # %hash => ('key1' => 'F', 'key2' => 'F')
 
 # DESCRIPTION
 
-Acme::Morihiro is joke module for fan of Hiroshi Mori.
+Acme::Morihiro is joke module for Hiroshi Mori's fan.
 
 # LICENSE
 
