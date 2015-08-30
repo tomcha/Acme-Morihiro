@@ -52,6 +52,17 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tomcha/Acme-Morihiro/issues"
+      },
+      "homepage" : "https://github.com/tomcha/Acme-Morihiro",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tomcha/Acme-Morihiro.git",
+         "web" : "https://github.com/tomcha/Acme-Morihiro"
+      }
+   },
    "version" : "0.01",
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }

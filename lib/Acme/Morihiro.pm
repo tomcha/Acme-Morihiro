@@ -3,32 +3,38 @@ use 5.008001;
 use strict;
 use warnings;
 use utf8;
-use Encode;
 
 our $VERSION = "0.01";
 
 sub shi{
   my $self = shift;
-  my $return_strings;
-  while($self =~ /(.*?)([ァ-ヴ]+)ー([^ァ-ヴ])(.*)/g){
+
+  while( $self =~ /(.*?)([ァ-ヴ]+)ー([^ァ-ヴ])(.*)/g ){
     my $f = $1;
     my $s = $2;
     my $t = $3;
     my $fo = $4;
 
-    if($s =~ /[キシチニヒミリギジヂビピ]$/){
+    if( $s =~ /[キシチニヒミリギジヂビピ]$/ ){
       $self = $f.$s.'ィ'.$t.$fo;
     }else{
       $self = $f.$s.$t.$fo;
     }
   }
 
-  if(utf8::is_utf8($self)){
-    $self = Encode::encode('UTF-8', $self)
-  };
+  if( $self =~ /(.*?)([ァ-ヴ]+)ー$/){
+    my $f = $1;
+    my $s = $2;
+    if( $s =~ /[キシチニヒミリギジヂビピ]$/ ){
+      $self = $f.$s.'ィ';
+    }else{
+      $self = $f.$s;
+    }
+  }
   return $self;
 }
-sub all_become_f{
+
+sub changef{
   for my $item (@_){
     $item = 'F';
   }
@@ -56,20 +62,20 @@ Acme::Morihiro - text changer.
     #   エネルギィ源。
 
     my $strings = 'sample text';
-    Acme::Morihiro::all_become_f($strings);
-    print $strings;
-    #outputs =>
-    #   F
+    Acme::Morihiro::changef($strings);
+    # $strings => 'F'
     
     my @array = ('sample', 'text');
-    Acme::Morihiro::all_become_f(@array);
-    print "@array\n";
-    #outputs =>
-    #   F F
+    Acme::Morihiro::changef(@array);
+    # @array => ('F', 'F')
+
+    my %hash= ('key1' => 'val1', 'key2' => 'val2');
+    Acme::Morihiro::changef(%hash);
+    # %hash => ('key1' => 'F', 'key2' => 'F')
 
 =head1 DESCRIPTION
 
-Acme::Morihiro is joke module for fan of Hiroshi Mori.
+Acme::Morihiro is joke module for Hiroshi Mori's fan.
 
 =head1 LICENSE
 
